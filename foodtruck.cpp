@@ -1,13 +1,19 @@
 /* Food truck program
  * Tanner Babcock
  * tababcock@dmacc.edu
- * September 8, 2021
+ * September 9, 2021
 */
 #include <iostream>
 #define MAXBUNS 75
 #define MAXSODA 200
 #define MAXBURGERS 200
 #define MAXCHILI 500
+#define LOWBUNS 15
+#define LOWSODA 40
+#define LOWBURGERS 10
+#define LOWCHILI 100
+#define ENTREE 5.00
+#define CENTREE 7.00
 using namespace std;
 
 extern int burgerPatties;
@@ -34,11 +40,11 @@ double sellHamburger(bool chili, int quantity = 1) {
 	double tax;   // added sales tax
 
 	if (chili) {
-		total = (7.00 * quantity);
+		total = (CENTREE * quantity);
 		chili -= (4 * quantity);
 	}
 	else {
-		total = (5.00 * quantity);
+		total = (ENTREE * quantity);
 	}
 	tax = (5.00 / 100.00) * total;
 	cashRegister += (total + tax);
@@ -55,11 +61,11 @@ double sellHotdog(bool chili, int quantity = 1) {
 	double tax;
 
 	if (chili) {
-		total = (7.00 * quantity);
+		total = (CENTREE * quantity);
 		chili -= (4 * quantity);
 	}
 	else {
-		total = (5.00 * quantity);
+		total = (ENTREE * quantity);
 	}
 	tax = (5.00 / 100.00) * total;
 	cashRegister += (total + tax);
@@ -69,6 +75,8 @@ double sellHotdog(bool chili, int quantity = 1) {
 	return (total + tax);
 }
 
+/* Show the entire menu for inputting orders, setting
+ * inventory, and quitting */
 void showMenu(void) {
 	cout << "Welcome to Billy's Burgs and Furts" << endl;
 	cout << "Type one of the following characters to do something" << endl << endl;
@@ -101,6 +109,8 @@ void showMenu(void) {
 	return;
 }
 
+/* Allows the user to input the inventory, showing current values
+ * and warning for values that are too high */
 void inventory(void) {
 	int x, y, z;
 	cout << "Enter the amount of hamburger Buns available (currently " << burgerBuns << "): ";
@@ -121,10 +131,6 @@ int main(void) {
 	double dog = sellHotdog(false, 2);
 
 	cout.precision(2);
-	/*
-	cout << "3 chili burgers total: $" << fixed << burger << endl;
-	cout << "2 hotdogs total: $" << fixed << dog << endl;
-	*/
 	cout << "Cash register: $" << cashRegister << endl;
 
 	showMenu();
