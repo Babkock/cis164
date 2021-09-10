@@ -4,16 +4,7 @@
  * September 9, 2021
 */
 #include <iostream>
-#define MAXBUNS 75
-#define MAXSODA 200
-#define MAXBURGERS 200
-#define MAXCHILI 500
-#define LOWBUNS 15
-#define LOWSODA 40
-#define LOWBURGERS 10
-#define LOWCHILI 100
-#define ENTREE 5.00
-#define CENTREE 7.00
+#include "foodtruck.h"
 using namespace std;
 
 extern int burgerPatties;
@@ -35,18 +26,18 @@ double cashRegister = 0.0;
 
 /* Sells hamburgers or chili hamburgers, returns the total amount
  * of the transaction */
-double sellHamburger(bool chili, int quantity = 1) {
+double sellHamburger(bool ch, int quantity = 1) {
 	double total; // total amount due from customer
 	double tax;   // added sales tax
 
-	if (chili) {
+    if (ch) {
 		total = (CENTREE * quantity);
 		chili -= (4 * quantity);
 	}
 	else {
 		total = (ENTREE * quantity);
 	}
-	tax = (5.00 / 100.00) * total;
+    tax = (5.0 / 100.0) * total;
 	cashRegister += (total + tax);
 	
 	burgerPatties -= quantity;
@@ -56,18 +47,18 @@ double sellHamburger(bool chili, int quantity = 1) {
 
 /* Sells hotdogs or chili hotdogs, returns the total amount
  * of the transaction */
-double sellHotdog(bool chili, int quantity = 1) {
+double sellHotdog(bool ch, int quantity = 1) {
 	double total;
 	double tax;
 
-	if (chili) {
+    if (ch) {
 		total = (CENTREE * quantity);
 		chili -= (4 * quantity);
 	}
 	else {
 		total = (ENTREE * quantity);
 	}
-	tax = (5.00 / 100.00) * total;
+    tax = (5.0 / 100.0) * total;
 	cashRegister += (total + tax);
 
 	hotdogs -= quantity;
@@ -102,7 +93,7 @@ void showMenu(void) {
 		cout << "'c' - 12 oz. container of chili $4.00 - " << chili << " ounces left" << endl;
 	}
 	if (fryBaskets > 0) {
-		cout << "'f' - Basket of fries $7.00" << endl;
+        cout << "'f' - Basket of fries $7.00 - " << fryBaskets << " left" << endl;
 	}
 	if (soda > 0) {
 		cout << "'s' - Can of soda $2.00 - " << soda << " cans left" << endl;
@@ -185,7 +176,7 @@ int main(void) {
     int soldChili = 0, soldFryBaskets = 0, soldSoda = 0;
 
 	cout.precision(2);
-	cout << "Cash register: $" << cashRegister << endl;
+    cout << "Cash register: $" << fixed << cashRegister << endl;
 
 	showMenu();
 	do {
@@ -297,8 +288,10 @@ int main(void) {
                     cin >> quantity;
                     if ((quantity * 12) >= chili) {
                         chili -= (quantity * 12);
+                        // four dollars per 12-oz container
                         subTotal = (4.00 * quantity);
                         tax = (5.00 / 100.00) * subTotal;
+
                         cashRegister += (subTotal + tax);
                         soldChili += quantity;
                         cout << "$" << fixed << (subTotal + tax) << endl;
@@ -308,16 +301,36 @@ int main(void) {
                 }
                 break;
 
+            case 'f': case 'F': // fry baskets
+                if (fryBaskets > 0) {
+                    cout << "How many baskets of fries? ";
+                    cin >> quantity;
+                    if (quantity <= fryBaskets) {
+                        fryBaskets -= quantity;
+                        subTotal = (7.00 * quantity);
+                        tax = (5.0 / 100.0) * subTotal;
+
+                        cashRegister += (subTotal + tax);
+                        soldFryBaskets += quantity;
+                    }
+                    else
+                        cerr << "We don't have that many fry baskets" << endl;
+                }
+                break;
+
             case 'h': case 'H': case 'm': case 'M':
 				showMenu();
 				break;
+            case 'r': case 'R':
+                cout << "Cash register: $" << fixed << cashRegister << endl;
+                break;
             case 'q': case 'Q':
                 break;
             default:
                 cerr << "Unknown menu option specified" << endl;
                 break;
 		}
-	} while (menuOption != 'q');
+    } while (menuOption != 'q' && menuOption != 'Q');
 
 	return 0;
 }
