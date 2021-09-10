@@ -217,9 +217,10 @@ int main(void) {
 			case 'i': case 'I':
 				inventory();
 				break;
+
             case 'b': case 'B': // hamburgers
                 if ((burgerBuns == 0) || (burgerPatties == 0))
-                    cerr << "Sorry no more burgers, because there are no more buns" << endl;
+                    cerr << "Sorry no more burgers" << endl;
                 else {
                     cout << "How many hamburgers? ";
                     cin >> quantity;
@@ -234,26 +235,84 @@ int main(void) {
                     }
                 }
                 break;
+
             case 'e': case 'E': // chili burgers
                 if (burgerBuns == 0 || burgerPatties == 0)
-                    cerr << "Sorry no more burgers, because there are no more buns" << endl;
+                    cerr << "Sorry no more burgers" << endl;
                 else if (chili < 4)
                     cerr << "Sorry not enough chili" << endl;
+                // there has to be enough chili, and enough patties and buns
                 else {
                     cout << "How many chili burgers? ";
                     cin >> quantity;
-                    if ((burgerBuns - quantity) >= 0) {
+                    if (quantity <= burgerBuns) {
                         subTotal = (double)sellHamburger(true, quantity);
+                        soldChiliBurgers += quantity;
                         cout << "$" << fixed << subTotal << endl;
                     }
-                    else {
+                    else
                         cerr << "We don't have that many hamburgers" << endl;
-                    }
                 }
                 break;
-			case 'h': case 'H': case 'm': case 'M':
+
+            case 'd': case 'D': // hot dogs
+                if (hotdogBuns == 0 || hotdogs == 0)
+                    cerr << "Sorry no more hotdogs" << endl;
+                else {
+                    cout << "How many hot dogs? ";
+                    cin >> quantity;
+                    if (quantity <= hotdogBuns) {
+                        subTotal = (double)sellHotdog(false, quantity);
+                        soldHotdogs += quantity;
+                        cout << "$" << fixed << subTotal << endl;
+                    }
+                    else
+                        cerr << "We don't have that many hot dogs" << endl;
+                }
+                break;
+
+            case 'g': case 'G': // chili hot dogs
+                if (hotdogBuns == 0 || hotdogs == 0)
+                    cerr << "Sorry no more hot dogs" << endl;
+                else if (chili < 4)
+                    cerr << "Sorry not enough chili" << endl;
+                else {
+                    cout << "How many chili hotdogs? ";
+                    cin >> quantity;
+                    if (quantity <= hotdogBuns) {
+                        subTotal = (double)sellHotdog(true, quantity);
+                        soldChiliHotdogs += quantity;
+                        cout << "$" << fixed << subTotal << endl;
+                    }
+                    else
+                        cerr << "We don't have that many hot dogs" << endl;
+                }
+                break;
+
+            case 'c': case 'C': // chili
+                if (chili < 12)
+                    cerr << "Sorry not enough chili for an order" << endl;
+                else {
+                    cout << "How many 12-ounce containers of chili? ";
+                    cin >> quantity;
+                    if ((quantity * 12) >= chili) {
+                        chili -= (quantity * 12);
+                        subTotal = (4.00 * quantity);
+                        tax = (5.00 / 100.00) * subTotal;
+                        cashRegister += (subTotal + tax);
+                        soldChili += quantity;
+                        cout << "$" << fixed << (subTotal + tax) << endl;
+                    }
+                    else
+                        cerr << "We don't have that much chili" << endl;
+                }
+                break;
+
+            case 'h': case 'H': case 'm': case 'M':
 				showMenu();
 				break;
+            case 'q': case 'Q':
+                break;
             default:
                 cerr << "Unknown menu option specified" << endl;
                 break;
