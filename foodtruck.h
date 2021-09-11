@@ -1,3 +1,8 @@
+/* Food truck program
+ * Tanner Babcock
+ * tababcock@dmacc.edu
+ * September 9, 2021
+*/
 #ifndef FOODTRUCK_H
 #define FOODTRUCK_H
 
