@@ -8,10 +8,12 @@ build:
   script:
     - g++ tictactoe.cpp -o tictactoe
     - g++ foodtruck.cpp -o foodtruck
+    - g++ areview.cpp -o areview
   artifacts:
     paths:
       - tictactoe
       - foodtruck
+      - areview
   cache:
     paths:
       - "*.o"
