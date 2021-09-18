@@ -1,10 +1,10 @@
-/* Food truck program
+/* Food truck working model
  * Tanner Babcock
  * tababcock@dmacc.edu
  * September 9, 2021
 */
 #include <iostream>
-#include "foodtruck.h"
+#include "foodmodel.h"
 using namespace std;
 
 extern int burgerPatties;

@@ -1,4 +1,4 @@
-/* Food truck program
+/* Food truck model
  * Tanner Babcock
  * tababcock@dmacc.edu
  * September 9, 2021
