@@ -7,15 +7,16 @@ build:
     - apt update && apt -y install make autoconf
   script:
     - g++ tictactoe.cpp -o tictactoe
+    - g++ tictacmoves.cpp -o tictacmoves
     - g++ foodmodel.cpp -o foodmodel
     - g++ areview.cpp -o areview
     - cd FoodTruck
-    - make clean
     - make
     - cd ..
   artifacts:
     paths:
       - tictactoe
+      - tictacmoves
       - foodmodel
       - areview
       - FoodTruck/foodtruck
