@@ -7,19 +7,26 @@ build:
     - apt update && apt -y install make autoconf
   script:
     - g++ tictactoe.cpp -o tictactoe
-    - g++ foodtruck.cpp -o foodtruck
+    - g++ foodmodel.cpp -o foodmodel
     - g++ areview.cpp -o areview
+    - cd FoodTruck
+    - make clean
+    - make
+    - cd ..
   artifacts:
     paths:
       - tictactoe
-      - foodtruck
+      - foodmodel
       - areview
+      - FoodTruck/foodtruck
   cache:
     paths:
       - "*.o"
+      - "FoodTruck/*.o"
 
 # run tests using the binary built before
 test:
   stage: test
   script:
     - echo Run anything here
+

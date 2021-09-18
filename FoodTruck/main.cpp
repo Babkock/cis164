@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <ofstream>
+#include <fstream>
 #include "foodtruck.h"
 using namespace std;
 
