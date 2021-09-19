@@ -2,8 +2,8 @@ OPTS = -Wall -O2
 
 all: foodtruck
 
-foodtruck: main.o menu.o sell.o
-	g++ main.o menu.o sell.o -o foodtruck
+foodtruck: main.o menu.o purchase.o sales.o
+	g++ main.o menu.o purchase.o sales.o -o foodtruck
 	strip foodtruck
 
 main.o: main.cpp
@@ -12,8 +12,12 @@ main.o: main.cpp
 menu.o: menu.cpp
 	g++ ${OPTS} -c menu.cpp
 
-sell.o: sell.cpp
-	g++ ${OPTS} -c sell.cpp
+purchase.o: purchase.cpp
+	g++ ${OPTS} -c purchase.cpp
+
+sales.o: sales.cpp
+	g++ ${OPTS} -c sales.cpp
 
 clean:
-	rm foodtruck main.o menu.o sell.o
+	rm foodtruck main.o menu.o purchase.o sales.o
+
