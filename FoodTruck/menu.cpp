@@ -11,16 +11,16 @@ using namespace std;
 /* Prompt for an integer with given string, and return the received input */
 int iprompt(const string & p) {
     int val;
-	cout << p;
-	cin >> val;
+    cout << p;
+    cin >> val;
     return val;
 }
 
 /* Do not print newline */
 char cprompt(const string & p) {
     char val;
-	cout << p;
-	cin >> val;
+    cout << p;
+    cin >> val;
     return val;
 }
 

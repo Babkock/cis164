@@ -3,6 +3,7 @@
  * tababcock@dmacc.edu
  * September 9, 2021
 */
+/* This is the MODEL. OLD ASSIGNMENT */
 #include <iostream>
 #include "foodmodel.h"
 using namespace std;
