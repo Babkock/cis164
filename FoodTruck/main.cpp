@@ -278,6 +278,8 @@ int main(void) {
         salesReport << "Total made from fry baskets: $" << fixed << z << endl;
         salesReport << "-----------------" << endl;
         salesReport << "Total money: $" << fixed << cashRegister << endl;
+
+        salesReport.close();
     }
     else {
         cout << "Hamburgers sold: " << soldBurgers.size() << endl;
