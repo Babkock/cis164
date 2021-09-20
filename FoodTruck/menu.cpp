@@ -123,4 +123,5 @@ void inventory(void) {
         soda = a;
     }
     cout << "Finished inputting inventory" << endl;
+    return;
 }

@@ -34,7 +34,7 @@ void sales(const string & filename) {
                 z += t.total;
             }
             salesReport << "-----------------------------------" << endl;
-            salesReport << "Total from hamburgers:\t$" << fixed << z << endl;
+            salesReport << "Total hamburger sales:\t$" << fixed << z << endl;
             salesReport << "-----------------------------------" << endl;
         }
         else {
@@ -57,7 +57,7 @@ void sales(const string & filename) {
                 z += t.total;
             }
             salesReport << "-----------------------------------" << endl;
-            salesReport << "Total from hotdogs: $" << fixed << z << endl;
+            salesReport << "Total hotdog sales:\t$" << fixed << z << endl;
             salesReport << "-----------------------------------" << endl;
         }
         else {
@@ -80,7 +80,7 @@ void sales(const string & filename) {
                 z += t.total;
             }
             salesReport << "-----------------------------------" << endl;
-            salesReport << "Total from chili burgers:\t$" << fixed << z << endl;
+            salesReport << "Total chili burger sales:\t$" << fixed << z << endl;
             salesReport << "-----------------------------------" << endl;
         }
         else {
@@ -103,7 +103,7 @@ void sales(const string & filename) {
                 z += t.total;
             }
             salesReport << "-----------------------------------" << endl;
-            salesReport << "Total from chili hotdogs:\t$" << fixed << z << endl;
+            salesReport << "Total chili hotdog sales:\t$" << fixed << z << endl;
             salesReport << "-----------------------------------" << endl;
         }
         else {
@@ -126,7 +126,7 @@ void sales(const string & filename) {
                 z += t.total;
             }
             salesReport << "-----------------------------------" << endl;
-            salesReport << "Total from chili containers:\t$" << fixed << z << endl;
+            salesReport << "Total chili container sales:\t$" << fixed << z << endl;
             salesReport << "-----------------------------------" << endl;
         }
         else {
@@ -149,7 +149,7 @@ void sales(const string & filename) {
                 z += t.total;
             }
             salesReport << "-----------------------------------" << endl;
-            salesReport << "Total from fry baskets:\t$" << fixed << z << endl;
+            salesReport << "Total fry basket sales:\t$" << fixed << z << endl;
             salesReport << "-----------------------------------" << endl;
         }
         else {
@@ -172,7 +172,7 @@ void sales(const string & filename) {
                 z += t.total;
             }
             salesReport << "----------------------------------" << endl;
-            salesReport << "Total from soda:\t$" << fixed << z << endl;
+            salesReport << "Total soda sales:\t$" << fixed << z << endl;
             salesReport << "----------------------------------" << endl;
         }
         else {
@@ -186,6 +186,7 @@ void sales(const string & filename) {
     else {
         double z = 0.0;
         int sum = 0;
+
         if (soldBurgers.size() > 0) {
             for (const transaction& t : soldBurgers)
                 sum += t.quantity;
@@ -197,7 +198,7 @@ void sales(const string & filename) {
                 cout << t.quantity << "\t\t\t\t$" << fixed << t.total << endl;
                 z += t.total;
             }
-            cout << "Total from hamburgers:\t$" << fixed << z << endl << endl;
+            cout << "Total hamburger sales:\t$" << fixed << z << endl << endl;
         }
         else {
             cout << "Wow business must be really bad" << endl;
@@ -216,7 +217,7 @@ void sales(const string & filename) {
                 cout << t.quantity << "\t\t\t\t$" << fixed << t.total << endl;
                 z += t.total;
             }
-            cout << "Total from hotdogs:\t$" << fixed << z << endl << endl;
+            cout << "Total hotdog sales:\t$" << fixed << z << endl << endl;
         }
         else {
             cout << "No hotdogs sold :(" << endl;
@@ -235,7 +236,7 @@ void sales(const string & filename) {
                 cout << t.quantity << "\t\t\t\t$" << fixed << t.total << endl;
                 z += t.total;
             }
-            cout << "Total from chili burgers:\t$" << fixed << z << endl << endl;
+            cout << "Total chili burger sales:\t$" << fixed << z << endl << endl;
         }
         else {
             cout << "No chili burgers sold :(" << endl;
@@ -254,7 +255,7 @@ void sales(const string & filename) {
                 cout << t.quantity << "\t\t\t\t$" << fixed << t.total << endl;
                 z += t.total;
             }
-            cout << "Total from chili hotdogs:\t$" << fixed << z << endl << endl;
+            cout << "Total chili hotdog sales:\t$" << fixed << z << endl << endl;
         }
         else {
             cout << "No chili hotdogs sold :(" << endl;
@@ -273,7 +274,7 @@ void sales(const string & filename) {
                 cout << t.quantity << "\t\t\t\t$" << fixed << t.total << endl;
                 z += t.total;
             }
-            cout << "Total from chili containers: $" << fixed << z << endl;
+            cout << "Total chili container sales: $" << fixed << z << endl << endl;
         }
         else {
             cout << "No chili containers sold :(" << endl;
@@ -292,7 +293,7 @@ void sales(const string & filename) {
                 cout << t.quantity << "\t\t\t\t$" << fixed << t.total << endl;
                 z += t.total;
             }
-            cout << "Total from fry baskets:\t$" << fixed << z << endl << endl;
+            cout << "Total fry basket sales:\t$" << fixed << z << endl << endl;
         }
         else {
             cout << "No fry baskets sold :(" << endl;
@@ -311,13 +312,12 @@ void sales(const string & filename) {
                 cout << t.quantity << "\t\t\t\t$" << fixed << t.total << endl;
                 z += t.total;
             }
-            cout << "Total from soda:\t$" << fixed << z << endl << endl;
+            cout << "Total soda sales:\t$" << fixed << z << endl << endl;
         }
         else {
             cout << "No soda sold :(" << endl;
         }
-
-        cout << "Total sales:\t\t$" << fixed << cashRegister << endl;
     }
+    cout << "Total sales:\t\t$" << fixed << cashRegister << endl;
     return;
 }
