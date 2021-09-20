@@ -25,6 +25,7 @@ typedef struct {
     double total;
 } transaction;
 
+/* inventory */
 extern int burgerPatties;
 extern int burgerBuns;
 extern int hotdogs;
@@ -34,6 +35,7 @@ extern int fryBaskets;
 extern int soda;
 extern double cashRegister;
 
+/* transaction history */
 extern std::vector<transaction> soldBurgers;
 extern std::vector<transaction> soldHotdogs;
 extern std::vector<transaction> chiliBurgers;
@@ -53,6 +55,6 @@ void showMenu(void);
 void inventory(void);
 
 /* sales.cpp */
-void salesReport(std::string filename);
+void sales(const std::string & filename);
 
 #endif

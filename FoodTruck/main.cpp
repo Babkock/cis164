@@ -149,7 +149,7 @@ int main(void) {
                         cashRegister += (subTotal + tax);
                         cout << "$" << fixed << (subTotal + tax) << endl;
 
-                        soldChili.push_back({ .quantity = (quantity * 12), .total = (subTotal + tax) });
+                        soldChili.push_back({ .quantity = quantity, .total = (subTotal + tax) });
                     }
                     else
                         cerr << "We don't have that much chili" << endl;
@@ -210,7 +210,7 @@ int main(void) {
     cout << "Type a filename, then ENTER, to write the sales report" << endl << "or press CTRL + D to print it:" << endl;
     cin >> filename;
 
-    salesReport(filename);
+    sales(filename);
 
     return 0;
 }

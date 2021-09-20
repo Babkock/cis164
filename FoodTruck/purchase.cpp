@@ -29,8 +29,7 @@ double sellHamburger(bool ch, int quantity = 1) {
 /* Sells hotdogs or chili hotdogs, returns the total amount
  * of the transaction */
 double sellHotdog(bool ch, int quantity = 1) {
-    double total;
-    double tax;
+    double total, tax;
 
     if (ch) {
         total = (CENTREE * quantity);
