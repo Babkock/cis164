@@ -54,15 +54,20 @@ public:
 	}
 };
 
-int main(void) {
+int main(int argc, char *argv[]) {
 	vector<Order> list;
 	Order iterate;
-	string filename;
 	ofstream orders;
+	string filename;
 	int y = 0;
-	
-	cout << "Please enter a filename to write orders to: ";
-	cin >> filename;
+
+	if (argc > 1)
+		filename = argv[1];
+	else {
+		cout << "Please enter a filename to write orders to: ";
+		cin >> filename;
+	}
+
 	orders.open(filename, ios::out);
 	orders.precision(2);
 	
