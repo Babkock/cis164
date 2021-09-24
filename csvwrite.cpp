@@ -54,12 +54,30 @@ public:
 };
 
 int main(void) {
-	Order o;
-	if (o.promptValues()) {
-		cout << "Data retrieved" << endl;
-	}
-	else {
-		cout << "You entered 'q'" << endl;
+	vector<Order> list;
+	Order iterate;
+	string filename;
+	ofstream orders;
+	
+	cout << "Please enter a filename to write orders to: ";
+	cin >> filename;
+	orders.open(filename, ios::out);
+
+	cout.precision(2);
+	do {
+		cout << "Doing it again" << endl;
+		if (!iterate.getSku().empty()) {
+//			cout << "You entered: " << o.getSku() << "," << o.getQuantity() << "," << fixed << o.getPrice() << endl;
+			list.push_back(iterate);
+		}
+	} while (iterate.promptValues());
+	/* This will break the loop if the user enters a 'q' */
+
+	int y = 1;
+	for (Order x : list) {
+		cout << "Writing order #" << y << endl;
+		
+		y++;
 	}
 	return 0;
 }
