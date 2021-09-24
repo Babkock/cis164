@@ -10,6 +10,7 @@ build:
     - g++ tictacmoves.cpp -o tictacmoves
     - g++ foodmodel.cpp -o foodmodel
     - g++ areview.cpp -o areview
+    - g++ csvwrite.cpp -o csvwrite
     - cd FoodTruck
     - make
     - cd ..
@@ -19,6 +20,7 @@ build:
       - tictacmoves
       - foodmodel
       - areview
+      - csvwrite
       - FoodTruck/foodtruck
   cache:
     paths:
