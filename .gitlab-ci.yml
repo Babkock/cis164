@@ -11,6 +11,7 @@ build:
     - g++ foodmodel.cpp -o foodmodel
     - g++ areview.cpp -o areview
     - g++ csvwrite.cpp -o csvwrite
+    - g++ csvread.cpp -o csvread
     - cd FoodTruck
     - make
     - cd ..
@@ -21,6 +22,7 @@ build:
       - foodmodel
       - areview
       - csvwrite
+      - csvread
       - FoodTruck/foodtruck
   cache:
     paths:

@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
 	orders.open(filename, ios::in);
 	cout.precision(2);
 
-	while ((getline(orders, sku, ',')) && (!sku.empty())) {
+	while ((getline(orders, sku, ',')) && (sku.size() > 2)) {
 		cout << "SKU: " << sku << endl;
 
 		getline(orders, qua, ',');
@@ -84,3 +84,36 @@ int main(int argc, char *argv[]) {
 
 	return 0;
 }
+
+/* When the given CSV file is this:
+
+j0hnl3n,12,1.93
+p4ul,93,2.21
+g30rg3,24,4.20
+R1ng0,669,6.10
+
+Then the output of this program is this:
+
+SKU: j0hnl3n
+Quantity: 12
+Price: 1.93
+------j0hnl3n Total: $23.16 ------
+--------------------------------------
+SKU: p4ul
+Quantity: 93
+Price: 2.21
+------p4ul Total: $205.53 ------
+--------------------------------------
+SKU: g30rg3
+Quantity: 24
+Price: 4.20
+------g30rg3 Total: $100.80 ------
+--------------------------------------
+SKU: R1ng0
+Quantity: 669
+Price: 6.10
+------R1ng0 Total: $4080.90 ------
+--------------------------------------
+Total of $4410.39
+
+*/
