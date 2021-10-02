@@ -8,7 +8,13 @@
 using namespace std;
 
 class Biometrics {
-	
+	private:
+		double heightInCm;
+		double weightInKg;
+	public:
+		void setHeightFeetInches(double fe, double in) {
+			
+		}	
 };
 
 int main(void) {
