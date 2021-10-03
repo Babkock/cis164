@@ -12,6 +12,7 @@ build:
     - g++ areview.cpp -o areview
     - g++ csvwrite.cpp -o csvwrite
     - g++ csvread.cpp -o csvread
+    - g++ biometrics.cpp -o biometrics
     - cd FoodTruck
     - make
     - cd ..
@@ -23,6 +24,7 @@ build:
       - areview
       - csvwrite
       - csvread
+      - biometrics
       - FoodTruck/foodtruck
   cache:
     paths:
