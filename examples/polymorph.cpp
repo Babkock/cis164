@@ -42,8 +42,19 @@ int main(void) {
 	/* Unique pointer to a new Rectangle object */
 	unique_ptr<Rectangle> rect = make_unique<Rectangle>(10, 10);
 
-	/* Unique pointer to a circle object */
+	/* Unique pointer to a new circle object */
 	unique_ptr<Circle> cir = make_unique<Circle>();
+
+	/* call setRadius() on the circle */
+	cir->setRadius(5);
+
+	toyBox.push_back(move(rect));
+	toyBox.push_back(move(cir));
+
+	for (auto& shape : toyBox) {
+		cout << "Area: " << shape->area() << endl;
+	}
 
 	return 0;
 }
+
