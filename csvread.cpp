@@ -81,6 +81,7 @@ int main(int argc, char *argv[]) {
 		cout << "--------------------------------------" << endl;
 	}
 	cout << "Total of $" << fixed << total << endl;
+	orders.close();
 
 	return 0;
 }

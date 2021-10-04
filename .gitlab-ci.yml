@@ -16,6 +16,15 @@ build:
     - cd FoodTruck
     - make
     - cd ..
+    - cd examples
+    - g++ file.cpp -o file
+    - g++ metastruct.cpp -o metastruct
+    - cc pointies.c
+    - g++ polymorph.cpp -o polymorph
+    - g++ string.cpp -o string
+    - g++ struct.cpp -o struct
+    - g++ substr.cpp -o substr
+    - g++ vec2.cpp -o vec
   artifacts:
     paths:
       - tictactoe
@@ -26,6 +35,14 @@ build:
       - csvread
       - biometrics
       - FoodTruck/foodtruck
+      - examples/file
+      - examples/metastruct
+      - examples/a.out
+      - examples/polymorph
+      - examples/string
+      - examples/struct
+      - examples/substr
+      - examples/vec
   cache:
     paths:
       - "*.o"
