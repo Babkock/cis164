@@ -13,6 +13,7 @@ build:
     - g++ csvwrite.cpp -o csvwrite
     - g++ csvread.cpp -o csvread
     - g++ biometrics.cpp -o biometrics
+    - g++ inherit.cpp -o inherit
     - cd FoodTruck
     - make
     - cd ..
@@ -25,6 +26,7 @@ build:
     - g++ struct.cpp -o struct
     - g++ substr.cpp -o substr
     - g++ vec2.cpp -o vec
+    - cd ..
   artifacts:
     paths:
       - tictactoe
@@ -34,6 +36,7 @@ build:
       - csvwrite
       - csvread
       - biometrics
+      - inherit
       - FoodTruck/foodtruck
       - examples/file
       - examples/metastruct
