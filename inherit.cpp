@@ -37,6 +37,9 @@ int main(void) {
 
 	exampleShape.setLineColor("black");
 
+	cout << "Fill area " << exampleShape.getArea() << " with color "
+		<< exampleShape.getFillColor() << endl;
+
 	return 0;
 }
 
