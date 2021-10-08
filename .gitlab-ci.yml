@@ -6,26 +6,27 @@ build:
   before_script:
     - apt update && apt -y install make autoconf
   script:
-    - g++ tictactoe.cpp -o tictactoe
-    - g++ tictacmoves.cpp -o tictacmoves
-    - g++ foodmodel.cpp -o foodmodel
-    - g++ areview.cpp -o areview
-    - g++ csvwrite.cpp -o csvwrite
-    - g++ csvread.cpp -o csvread
-    - g++ biometrics.cpp -o biometrics
-    - g++ inherit.cpp -o inherit
+    - g++ tictactoe.cpp -Wall -O2 -o tictactoe
+    - g++ tictacmoves.cpp -Wall -O2 -o tictacmoves
+    - g++ foodmodel.cpp -Wall -O2 -o foodmodel
+    - g++ areview.cpp -Wall -O2 -o areview
+    - g++ csvwrite.cpp -Wall -O2 -o csvwrite
+    - g++ csvread.cpp -Wall -O2 -o csvread
+    - g++ biometrics.cpp -Wall -O2 -o biometrics
+    - g++ inherit.cpp -Wall -O2 -o inherit
+    - g++ dynamic.cpp -Wall -O2 -o dynamic
     - cd FoodTruck
     - make
     - cd ..
     - cd examples
     - g++ file.cpp -o file
-    - g++ metastruct.cpp -o metastruct
-    - cc pointies.c
-    - g++ polymorph.cpp -o polymorph
-    - g++ string.cpp -o string
-    - g++ struct.cpp -o struct
-    - g++ substr.cpp -o substr
-    - g++ vec2.cpp -o vec
+    - g++ metastruct.cpp -Wall -O2 -o metastruct
+    - cc pointies.c -O2 -o pointies
+    - g++ polymorph.cpp -Wall -O2 -o polymorph
+    - g++ string.cpp -Wall -O2 -o string
+    - g++ struct.cpp -Wall -O2 -o struct
+    - g++ substr.cpp -Wall -O2 -o substr
+    - g++ vec2.cpp -Wall -O2 -o vec
     - cd ..
   artifacts:
     paths:
@@ -37,10 +38,11 @@ build:
       - csvread
       - biometrics
       - inherit
+      - dynamic
       - FoodTruck/foodtruck
       - examples/file
       - examples/metastruct
-      - examples/a.out
+      - examples/pointies
       - examples/polymorph
       - examples/string
       - examples/struct
