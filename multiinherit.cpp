@@ -13,6 +13,9 @@ public:
 	Vehicle(int w, bool e): wheels(w), engine(e) { }
 	int getWheels(void) { return wheels; }
 	void setWheels(int w) { wheels = w; }
+	void whip(void) {
+		cout << "My " << wheels << "-wheel whip is so clean" << endl;
+	}
 	virtual void makeSound(void) { }
 };
 
@@ -30,6 +33,25 @@ public:
 	void makeSound(void) {
 		cout << "Clicky clicky! Ding ding!" << endl;
 		cout << "This is a " << color << " " << manufacturer << " bicycle!" << endl;
+	}
+};
+
+class Car : public Vehicle {
+private:
+	string color;
+	string model;
+	string make;
+	int year;
+public:
+	Car(string c, string ma, string mo, int y):
+		Vehicle(4, true), color(c), model(mo), make(ma), year(y) { }
+	string getColor(void) { return color; }
+	void setColor(const string &c) { color = c; }
+	string getModel(void) { return model; }
+	void setModel(const string &m) { model = m; }
+	void makeSound(void) {
+		cout << "Vroom vroom!! Eeerrumm... Reeeeeet!" << endl;
+		cout << "This is a " << color << " " << year << " " << make << " " << model << " car. It's a tough lookin car" << endl;
 	}
 };
 
