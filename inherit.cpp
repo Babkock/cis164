@@ -22,8 +22,8 @@ public:
 		lineColor = "";
 		fillColor = "";
 	}
-	void setLineColor(string lc) { lineColor = lc; }
-	void setFillColor(string fc) { fillColor = fc; }
+	void setLineColor(const string &lc) { lineColor = lc; }
+	void setFillColor(const string &fc) { fillColor = fc; }
 	string getLineColor(void) { return lineColor; }
 	string getFillColor(void) { return fillColor; }
 	/* dimensions() will be implemented in the derived classes */
