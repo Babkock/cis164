@@ -15,6 +15,7 @@ build:
     - g++ biometrics.cpp -Wall -O2 -o biometrics
     - g++ inherit.cpp -Wall -O2 -o inherit
     - g++ dynamic.cpp -Wall -O2 -o dynamic
+    - g++ multiinherit.cpp -Wall -O2 -o multiinherit
     - cd FoodTruck
     - make
     - cd ..
@@ -39,6 +40,7 @@ build:
       - biometrics
       - inherit
       - dynamic
+      - multiinherit
       - FoodTruck/foodtruck
       - examples/file
       - examples/metastruct
