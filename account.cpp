@@ -34,6 +34,7 @@ public:
 		phone = "";
 		zip = 0;
 	}
+	/* yawn */
 	string getFirstName(void) { return firstName; }
 	void setFirstName(const string &f) { firstName = f; }
 	string getLastName(void) { return lastName; }
@@ -46,6 +47,7 @@ public:
 	void setState(const string &s) { state = s; }
 	string getPhone(void) { return phone; }
 	void setPhone(const string &p) { phone = p; }
+
 	void printUser(void) {
 		cout << "Printing user" << endl;
 		cout << "Name: " << firstName << " " << lastName << endl;
@@ -57,20 +59,34 @@ public:
 	}
 };
 
-class Account : public User {
+/* Account is not a derived class of User, but an associated class
+ * Account object contains a User object */
+class Account {
 private:
+	User user;
 	long accNumber;
 	double balance;
 public:
-	Account(long acc, string f, string l, string a, string c, string s, string p, long z):
-		User(f, l, a, c, s, p, z),
+	Account(long acc, User u):
+		user(u),
 		accNumber(acc),
 		balance(0.0) { }
 	~Account(void) {
 		cout << "Account destructor called" << endl;
 	}
-	string getFirstName(void) { return User::getFirstName(); }
-	string getLastName(void) { return User::getLastName(); }
+
+	string getFirstName(void) { return user.getFirstName(); }
+	void setFirstName(const string &f) { user.setFirstName(f); }
+	string getLastName(void) { return user.getLastName(); }
+	void setLastName(const string &l) { user.setLastName(l); }
+	string getAddress(void) { return user.getAddress(); }
+	void setAddress(const string &a) { user.setAddress(a); }
+	string getCity(void) { return user.getCity(); }
+	void setCity(const string &c) { user.setCity(c); }
+	string getState(void) { return user.getState(); }
+	void setState(const string &s) { user.setState(s); }
+	string getPhone(void) { return user.getPhone(); }
+	void setPhone(const string &p) { user.setPhone(p); }
 
 	long getAccNumber(void) { return accNumber; }
 	void setAccNumber(long a) { accNumber = a; }
@@ -78,11 +94,11 @@ public:
 	void setBalance(double b) { balance = b; }
 
 	void printAccount(void) {
-		User::printUser();
+		user.printUser();
 		cout.precision(2);
 		cout << "Priting account" << endl;
 		cout << "Account number: " << accNumber << endl;
-		cout << "Balance: " << fixed << balance << endl;
+		cout << "Balance: " << "$" << fixed << balance << endl;
 	}
 };
 
@@ -90,9 +106,8 @@ int main(void) {
 	User guy("Carl", "Sagan", "100 Hollywood Blvd.", "Los Angeles", "California", "555-555-5555", 10090);
 	guy.printUser();
 
-	cout << endl;
+	Account bank(1234, guy);
+	bank.printAccount();
 
-	Account person(1234, "Janelle", "Monae", "Wondaland", "ArchAndroid Factory", "New York", "212-555-5555", 70840);
-	person.printAccount();
 	return 0;
 }
