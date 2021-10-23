@@ -104,9 +104,12 @@ public:
 
 int main(void) {
 	User guy("Carl", "Sagan", "100 Hollywood Blvd.", "Los Angeles", "California", "555-555-5555", 10090);
-	guy.printUser();
 
 	Account bank(1234, guy);
+	bank.setFirstName("Janelle");
+	bank.setLastName("Monae");
+	bank.setCity("Wondaland");
+	bank.setBalance(20000.20);
 	bank.printAccount();
 
 	return 0;
