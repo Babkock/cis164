@@ -5,6 +5,8 @@
 #ifndef UTIL_H
 #define UTIL_H
 
+#include <string>
+
 /* The template functions below will not work with this
  * object type unless we overload operators */
 class Obj {
