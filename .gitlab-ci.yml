@@ -18,6 +18,7 @@ build:
     - g++ multiinherit.cpp -Wall -O2 -o multiinherit
     - g++ account.cpp -Wall -O2 -o account
     - g++ operators.cpp -Wall -O2 -o operators
+    - g++ template.cpp -Wall -O2 -o template
     - cd FoodTruck
     - make
     - cd ..
@@ -45,6 +46,7 @@ build:
       - multiinherit
       - account
       - operators
+      - template
       - FoodTruck/foodtruck
       - examples/file
       - examples/metastruct
