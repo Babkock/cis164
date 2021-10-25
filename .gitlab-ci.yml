@@ -31,6 +31,8 @@ build:
     - g++ struct.cpp -Wall -O2 -o struct
     - g++ substr.cpp -Wall -O2 -o substr
     - g++ vec2.cpp -Wall -O2 -o vec
+    - g++ signal.cpp -Wall -O2 -o signal
+    - g++ funcpointer.cpp -Wall -O2 -o funcpointer
     - cd ..
   artifacts:
     paths:
@@ -56,6 +58,8 @@ build:
       - examples/struct
       - examples/substr
       - examples/vec
+      - examples/signal
+      - examples/funcpointer
   cache:
     paths:
       - "*.o"
