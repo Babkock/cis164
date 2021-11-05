@@ -19,6 +19,8 @@ build:
     - g++ account.cpp -Wall -O2 -o account
     - g++ operators.cpp -Wall -O2 -o operators
     - g++ template.cpp -Wall -O2 -o template
+    - g++ planetmap.cpp -Wall -O2 -o planetmap
+    - g++ stack.cpp -Wall -O2 -o stack
     - cd FoodTruck
     - make
     - cd ..
@@ -49,6 +51,8 @@ build:
       - account
       - operators
       - template
+      - planetmap
+      - stack
       - FoodTruck/foodtruck
       - examples/file
       - examples/metastruct
