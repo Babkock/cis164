@@ -21,6 +21,7 @@ build:
     - g++ template.cpp -Wall -O2 -o template
     - g++ planetmap.cpp -Wall -O2 -o planetmap
     - g++ stack.cpp -Wall -O2 -o stack
+    - g++ unique.cpp -Wall -O2 -o unique
     - cd FoodTruck
     - make
     - cd ..
@@ -35,6 +36,8 @@ build:
     - g++ vec2.cpp -Wall -O2 -o vec
     - g++ signal.cpp -Wall -O2 -o signal
     - g++ funcpointer.cpp -Wall -O2 -o funcpointer
+    - g++ static.cpp -Wall -O2 -o static
+    - g++ heap.cpp -Wall -O2 -o heap
     - cd ..
   artifacts:
     paths:
@@ -53,6 +56,7 @@ build:
       - template
       - planetmap
       - stack
+      - unique
       - FoodTruck/foodtruck
       - examples/file
       - examples/metastruct
@@ -64,6 +68,8 @@ build:
       - examples/vec
       - examples/signal
       - examples/funcpointer
+      - examples/static
+      - examples/heap
   cache:
     paths:
       - "*.o"
@@ -73,5 +79,29 @@ build:
 test:
   stage: test
   script:
-    - echo Run anything here
+    - echo "shit.csv" | ./csvread
+    - seq 10 | ./areview
+    - ./biometrics
+    - ./inherit
+    - ./operators
+    - echo "Venus" | ./planetmap
+    - seq 10 | ./stack
+    - seq 10 | ./unique
+    - ./template
+    - size tictactoe
+    - size tictacmoves
+    - size foodmodel
+    - size areview
+    - size csvwrite
+    - size csvread
+    - size biometrics
+    - size inherit
+    - size dynamic
+    - size multiinherit
+    - size account
+    - size operators
+    - size template
+    - size planetmap
+    - size stack
+    - size unique
 
