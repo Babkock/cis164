@@ -1,4 +1,5 @@
 *.o
+*.zip
 a.out
 FoodTruck/foodtruck
 foodmodel
