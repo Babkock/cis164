@@ -1,6 +1,8 @@
 *.o
 *.zip
 a.out
+*Debug
+*Debug/*
 FoodTruck/foodtruck
 foodmodel
 areview
