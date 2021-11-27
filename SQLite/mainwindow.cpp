@@ -1,4 +1,4 @@
-/* Qt SQLite example
+/* Qt5 SQLite example
  * Tanner Babcock
  * tababcock@dmacc.edu
  * November 25, 2021 */
@@ -38,15 +38,15 @@ MainWindow::MainWindow(QWidget *parent) :
     QSqlQuery ins1("INSERT INTO `people` VALUES (1, 'George', 'Washington')");
     QSqlQuery ins2("INSERT INTO `people` VALUES (2, 'Abraham', 'Lincoln')");
     QSqlQuery ins3("INSERT INTO `people` VALUES (3, 'Thomas', 'Jefferson')");
-    QSqlQuery ins4("INSERT INTO `people` VALUES (4, 'Franklin D.', 'Rosevelt'");
+    QSqlQuery ins4("INSERT INTO `people` VALUES (4, 'Franklin D.', 'Rosevelt')");
 }
 
 MainWindow::~MainWindow(void) {
+    db.close();
     delete ui;
 }
 
-void MainWindow::on_search_clicked(void)
-{
+void MainWindow::on_search_clicked(void) {
     QSqlQuery first, last;
     QString fullName;
     std::cout << "Search button clicked" << std::endl;
