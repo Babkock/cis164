@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     db = QSqlDatabase::addDatabase(DRIVER);
     db.setHostName("babcocksql");
-    db.setDatabaseName("mydb");
+    db.setDatabaseName(":memory:");
     db.setUserName("user");
     db.setPassword("password");
     if (!db.open()) {
