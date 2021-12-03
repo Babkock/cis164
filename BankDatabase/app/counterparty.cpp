@@ -1,21 +1,21 @@
 #include "counterparty.h"
 
-long Counterparty::getRoutingNumber() const {
+long Counterparty::getRoutingNumber(void) const {
     return routingNumber;
 }
 
-long Counterparty::getAccountId() const {
+long Counterparty::getAccountId(void) const {
     return accountId;
 }
 
-string Counterparty::getBusinessName() const {
+std::string Counterparty::getBusinessName(void) const {
     return businessName;
 }
 
-string Counterparty::getFirstName() const {
+std::string Counterparty::getFirstName(void) const {
     return firstName;
 }
 
-string Counterparty::getLastName() const {
+std::string Counterparty::getLastName(void) const {
     return lastName;
 }

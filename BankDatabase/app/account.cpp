@@ -4,11 +4,11 @@ Account::Account(long long accountId): accountId(accountId) {
     balance = 0.0;
 }
 
-double Account::getBalance() const {
+double Account::getBalance(void) const {
     return balance;
 }
 
-long long Account::getId() const {
+long long Account::getId(void) const {
     return accountId;
 }
 

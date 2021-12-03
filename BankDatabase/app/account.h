@@ -2,7 +2,6 @@
 #define ACCOUNT_H
 
 #include <iostream>
-using namespace std;
 
 class Account {
     private:
@@ -10,8 +9,8 @@ class Account {
         double balance;
     public:
         Account(long long accountId);
-        double getBalance() const;
-        long long getId() const;
+        double getBalance(void) const;
+        long long getId(void) const;
         void setId(long long accountId);
         /**
          * Returns the amount withdrawn. If the requsted amount exceeds the total

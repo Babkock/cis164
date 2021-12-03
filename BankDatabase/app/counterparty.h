@@ -2,26 +2,25 @@
 #define COUNTERPARTY_H
 
 #include <iostream>
-using namespace std;
 
 class Counterparty {
 private:
     long routingNumber;
     long accountId;
-    string businessName;
-    string firstName;
-    string lastName;
+    std::string businessName;
+    std::string firstName;
+    std::string lastName;
 public:
     Counterparty(long routingNumber, long accountId,
-                 string businessName, string firstName, string lastName):
+                 std::string businessName, std::string firstName, std::string lastName):
         routingNumber(routingNumber), accountId(accountId),
         businessName(businessName), firstName(firstName),
         lastName(lastName) {}
-    long getRoutingNumber() const;
-    long getAccountId() const;
-    string getBusinessName() const;
-    string getFirstName() const;
-    string getLastName() const;
+    long getRoutingNumber(void) const;
+    long getAccountId(void) const;
+    std::string getBusinessName(void) const;
+    std::string getFirstName(void) const;
+    std::string getLastName(void) const;
 };
 
 #endif //COUNTERPARTY_H

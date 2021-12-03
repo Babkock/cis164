@@ -1,7 +1,7 @@
 #include "bank.h"
 #include "cli.h"
 
-int main() {
+int main(void) {
     Bank bank;
     Cli cli(bank);
     cli.start();

@@ -7,15 +7,15 @@
 class Cli {
 private:
     Bank &bank;
-    void printGreeting();
-    void printAccounts();
+    void printGreeting(void);
+    void printAccounts(void);
     void printTransactions(Account &accountId);
     void printTransaction(long transactionId);
-    void mainMenu();
+    void mainMenu(void);
     void accountMenu(long accountId);
 public:
     Cli(Bank &bank): bank(bank) {}
-    void start();
+    void start(void);
 };
 
 #endif // CLI_H

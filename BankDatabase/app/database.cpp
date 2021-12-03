@@ -1,15 +1,20 @@
+#include <memory>
+#include <QDebug>
+#include <QSqlQuery>
+#include <QSqlDatabase>
+#include <QSqlError>
 #include "database.h"
 #include "bank.h"
 #include "counterparty.h"
 
-Database::Database() {
+Database::Database(void) {
     const QString DRIVER("QSQLITE");
-    if(!QSqlDatabase::isDriverAvailable(DRIVER)) {
+    if (!QSqlDatabase::isDriverAvailable(DRIVER)) {
         qWarning() << "ERROR: driver not available";
     }
     QSqlDatabase db = QSqlDatabase::addDatabase(DRIVER);
     db.setDatabaseName(":memory:");
-    if(!db.open()) {
+    if (!db.open()) {
         qWarning() << "ERROR: " << db.lastError();
     }
     rebuildTestDatabase();
@@ -134,14 +139,14 @@ void Database::performTransaction(Transaction &transaction) {
     query.exec();
 }
 
-long Database::getLatestRowId() {
+long Database::getLatestRowId(void) {
     QSqlQuery query;
     query.exec("SELECT last_insert_rowid()");
     query.next();
     return query.value(0).toLongLong();
 }
 
-void Database::rebuildTestDatabase() {
+void Database::rebuildTestDatabase(void) {
     // drop sample table, if it exists
     QSqlQuery query;
     query.exec("DROP TABLE IF EXISTS AccountTransaction");

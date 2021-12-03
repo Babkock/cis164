@@ -1,7 +1,7 @@
 #ifndef TRANSACTION_H
 #define TRANSACTION_H
 
-#include <time.h>
+#include <ctime>
 #include "account.h"
 #include "counterparty.h"
 
@@ -15,10 +15,10 @@ class Transaction {
     public:
         Transaction(long long transactionId, long long accountId,
             Counterparty counterparty, double amount, time_t timestamp);
-        long long getTransactionId() const;
-        long long getAccountId() const;
-        double getAmount() const;
-        Counterparty getCounterparty() const;
+        long long getTransactionId(void) const;
+        long long getAccountId(void) const;
+        double getAmount(void) const;
+        Counterparty getCounterparty(void) const;
 };
 
 #endif //TRANSACTION_H

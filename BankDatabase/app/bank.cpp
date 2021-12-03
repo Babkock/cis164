@@ -1,7 +1,7 @@
-#include<iostream>
+#include <iostream>
+#include <memory>
 #include "bank.h"
 #include "cli.h"
-using namespace std;
 
 void Bank::performTransactions(vector<unique_ptr<Transaction>>& transactions) {
     for (auto &transaction: transactions) {
@@ -35,7 +35,7 @@ unique_ptr<Account> Bank::getAccount(long long accountId) {
     return database.getAccount(accountId);
 }
 
-vector<unique_ptr<Account>> Bank::getAccounts() {
+vector<unique_ptr<Account>> Bank::getAccounts(void) {
     return database.getAccounts();
 }
 
@@ -47,6 +47,6 @@ vector<unique_ptr<Transaction>> Bank::getTransactions(long long accountId) {
     return database.getTransactions(accountId);
 }
 
-long Bank::getUniqueId() {
+long Bank::getUniqueId(void) {
     return nextUniqueId++;
 }

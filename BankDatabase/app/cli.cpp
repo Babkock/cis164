@@ -1,7 +1,10 @@
+#include <iostream>
+#include <memory>
 #include "cli.h"
 #include "transaction.h"
+using namespace std;
 
-void Cli::printAccounts() {
+void Cli::printAccounts(void) {
     /**
      * TODO: Display all accounts. Use bank.getAccounts() which makes a call
      * to the database layer.
@@ -71,11 +74,12 @@ void Cli::accountMenu(long accountId) {
                 break;
             default:
                 cout << "Invlaid selection." << endl;
+                break;
         }
     }
 }
 
-void Cli::mainMenu() {
+void Cli::mainMenu(void) {
     int selection;
     long accountId;
     bool exit = false;
@@ -107,6 +111,6 @@ void Cli::mainMenu() {
     }
 }
 
-void Cli::start() {
+void Cli::start(void) {
     mainMenu();
 }

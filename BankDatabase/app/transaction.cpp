@@ -1,3 +1,4 @@
+#include <ctime>
 #include "transaction.h"
 
 Transaction::Transaction(long long transactionId, long long accountId, Counterparty counterparty,
@@ -6,18 +7,18 @@ Transaction::Transaction(long long transactionId, long long accountId, Counterpa
         timestamp(timestamp) {
 }
 
-long long Transaction::getTransactionId() const {
+long long Transaction::getTransactionId(void) const {
     return transactionId;
 }
 
-long long Transaction::getAccountId() const {
+long long Transaction::getAccountId(void) const {
     return accountId;
 }
 
-double Transaction::getAmount() const {
+double Transaction::getAmount(void) const {
     return amount;
 }
 
-Counterparty Transaction::getCounterparty() const {
+Counterparty Transaction::getCounterparty(void) const {
     return counterparty;
 }
