@@ -21,12 +21,18 @@ void Cli::printAccounts(void) {
      */
 
     cout << "Bank Accounts" << endl;
+    vector<unique_ptr<Account>> acc;
+    acc = bank.getAccounts();
+
+    for (auto &account : acc) {
+        cout << "Account " << account->getId() << " has balance $" << account->getBalance() << endl;
+    }
 }
 
 void Cli::printTransactions(Account &account) {
     cout << endl << "Transactions for account " << account.getId() << endl;
     vector<unique_ptr<Transaction>> transactions = bank.getTransactions(account.getId());
-    for (auto &transaction: transactions) {
+    for (auto &transaction : transactions) {
         cout << "Transaction " << transaction->getTransactionId() << " $" << transaction->getAmount() << endl;
     }
 }

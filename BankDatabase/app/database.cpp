@@ -221,4 +221,20 @@ void Database::rebuildTestDatabase(void) {
      * Transaction 3. 3 4102
      * Transaction 4. 4 -1002
      */
+    insertTransaction.bindValue(":accId", accountId2);
+    insertTransaction.bindValue(":amount", 4022);
+    insertTransaction.bindValue(":time", "NOW()");
+    insertTransaction.exec();
+
+    insertTransaction.bindValue(":amount", -2122);
+    insertTransaction.bindValue(":time", "NOW()");
+    insertTransaction.exec();
+
+    insertTransaction.bindValue(":amount", 4102);
+    insertTransaction.bindValue(":time", "NOW()");
+    insertTransaction.exec();
+
+    insertTransaction.bindValue(":amount", -1002);
+    insertTransaction.bindValue(":time", "NOW()");
+    insertTransaction.exec();
 }
