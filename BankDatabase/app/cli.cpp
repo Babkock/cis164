@@ -1,3 +1,7 @@
+/* Bank Database
+ * Tanner Babcock
+ * tababcock@dmacc.edu
+ * December 3, 2021 */
 #include <iostream>
 #include <memory>
 #include "cli.h"
@@ -30,10 +34,12 @@ void Cli::printAccounts(void) {
 }
 
 void Cli::printTransactions(Account &account) {
+    int count = 1;
     cout << endl << "Transactions for account " << account.getId() << endl;
     vector<unique_ptr<Transaction>> transactions = bank.getTransactions(account.getId());
     for (auto &transaction : transactions) {
-        cout << "Transaction " << transaction->getTransactionId() << " $" << transaction->getAmount() << endl;
+        cout << "Transaction " << transaction->getTransactionId() << ". (" << count << ") $" << transaction->getAmount() << endl;
+        count++;
     }
 }
 
@@ -42,7 +48,7 @@ void Cli::printTransaction(long transactionId) {
     cout << "Transaction " << transaction->getTransactionId() << " $" << transaction->getAmount() << endl;
 }
 
-void Cli::printGreeting() {
+void Cli::printGreeting(void) {
     cout << "============================" << endl;
     cout << "=  Welcome to " << bank.getName() << ".   =" << endl;
     cout << "============================" << endl;

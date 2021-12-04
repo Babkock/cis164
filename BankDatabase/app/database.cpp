@@ -1,4 +1,11 @@
+/* Bank Database
+ * Tanner Babcock
+ * tababcock@dmacc.edu
+ * December 3, 2021 */
+/* In this file I added some error-checking, so I could
+ * more easily figure out my problem */
 #include <memory>
+#include <cstdlib>
 #include <QDebug>
 #include <QSqlQuery>
 #include <QSqlDatabase>
@@ -21,8 +28,18 @@ Database::Database(void) {
 }
 
 unique_ptr<Transaction> Database::getTransaction(long long transactionId) {
-    /**
-     * TODO: Complete the following query so that the transaction for the
+    auto query = make_unique<QSqlQuery>();
+    query->prepare("SELECT AccountId, counterpartyId, Amount, Timestamp FROM AccountTransaction WHERE TransactionId = :id");
+    query->bindValue(":id", transactionId);
+    query->exec();
+    query->next();
+
+    long long account = query->value(0).toLongLong();
+    Counterparty cp(query->value(1).toLongLong(), 0, "", "", "");
+    double amount = query->value(2).toDouble();
+    time_t ts = query->value(3).toLongLong();
+
+    /* TODO: Complete the following query so that the transaction for the
      * transactionId is loaded from the database and stored into a
      * Transaction object which returned by unique_ptr.
      *
@@ -45,17 +62,20 @@ unique_ptr<Transaction> Database::getTransaction(long long transactionId) {
      * You can create a default Counterparty object.
      * Counterparty counterparty(counterpartyId, 0, "", "", "");
      */
-
-    return nullptr;
+    unique_ptr<Transaction> ta = make_unique<Transaction>(transactionId, account, cp, amount, ts);
+    return ta;
 }
 
 unique_ptr<Account> Database::getAccount(long long accountId) {
-    QSqlQuery query;
-    query.prepare("SELECT Balance FROM Account WHERE AccountId = :accountId");
-    query.bindValue(":accountId", accountId);
-    query.exec();
-    query.next();
-    double balance = query.value(0).toDouble();
+    auto query = make_unique<QSqlQuery>();
+    query->prepare("SELECT Balance FROM Account WHERE AccountId = :accountId");
+    query->bindValue(":accountId", accountId);
+    if (!query->exec()) {
+        qWarning() << "Could not execute getAccount() SELECT" << endl;
+        abort();
+    }
+    query->next();
+    double balance = query->value(0).toDouble();
 
     unique_ptr<Account> account = make_unique<Account>(accountId);
     account->deposit(balance);
@@ -63,28 +83,37 @@ unique_ptr<Account> Database::getAccount(long long accountId) {
 }
 
 void Database::createAccount(long long accountId) {
-    QSqlQuery insertAccount;
-    insertAccount.prepare("INSERT INTO Account (AccountId, Balance) VALUES (:accountId, :balance)");
-    insertAccount.bindValue(":accountId", accountId);
-    insertAccount.bindValue(":balance", 0);
-    insertAccount.exec();
+    auto insert = make_unique<QSqlQuery>();
+    insert->prepare("INSERT INTO Account (AccountId, Balance) VALUES (:accountId, :balance)");
+    insert->bindValue(":accountId", accountId);
+    insert->bindValue(":balance", 0);
+    if (!insert->exec()) {
+        qWarning() << "Could not execute createAccount() with " << accountId << endl;
+        abort();
+    }
 }
 
 bool Database::accountExists(long long accountId) {
-    QSqlQuery query;
-    query.prepare("SELECT Balance FROM Account WHERE AccountId = :accountId");
-    query.bindValue(":accountId", accountId);
-    query.exec();
-    return query.next();
+    auto query = make_unique<QSqlQuery>();
+    query->prepare("SELECT Balance FROM Account WHERE AccountId = :accountId");
+    query->bindValue(":accountId", accountId);
+    if (!query->exec()) {
+        qWarning() << "Could not execute accountExists() with ID " << accountId << endl;
+        abort();
+    }
+    return query->next();
 }
 
 double Database::getBalance(long long accountId) {
-    QSqlQuery query;
-    query.prepare("SELECT Balance FROM Account WHERE AccountId = :accountId");
-    query.bindValue(":accountId", accountId);
-    query.exec();
-    query.next();
-    return query.value(0).toDouble();
+    auto query = make_unique<QSqlQuery>();
+    query->prepare("SELECT Balance FROM Account WHERE AccountId = :accountId");
+    query->bindValue(":accountId", accountId);
+    if (!query->exec()) {
+        qWarning() << "Could not execute getBalance() with ID " << accountId << endl;
+        abort();
+    }
+    query->next();
+    return query->value(0).toDouble();
 }
 
 vector<unique_ptr<Account>> Database::getAccounts() {
@@ -108,7 +137,10 @@ vector<unique_ptr<Transaction>> Database::getTransactions(long long accountId) {
     selectPtr->prepare("SELECT TransactionId, CounterpartyId, Amount, Timestamp " \
                        "FROM AccountTransaction WHERE AccountId = :accountId");
     selectPtr->bindValue(":accountId", accountId);
-    selectPtr->exec();
+    if (!selectPtr->exec()) {
+        qWarning() << "Could not execute getTransactions() with ID " << accountId << endl;
+        abort();
+    }
     vector<unique_ptr<Transaction>> transactions;
 
     while (selectPtr->next()) {
@@ -132,11 +164,14 @@ void Database::performTransaction(Transaction &transaction) {
     } else {
         account->deposit(transaction.getAmount());
     }
-    QSqlQuery query;
-    query.prepare("UPDATE Account SET Balance = :balance WHERE AccountId = :accountId");
-    query.bindValue(":balance", account->getBalance());
-    query.bindValue(":accountId", account->getId());
-    query.exec();
+    auto query = make_unique<QSqlQuery>();
+    query->prepare("UPDATE Account SET Balance = :balance WHERE AccountId = :accountId");
+    query->bindValue(":balance", account->getBalance());
+    query->bindValue(":accountId", account->getId());
+    if (!query->exec()) {
+        qWarning() << "Could not execute performTransaction() with account " << account->getId() << endl;
+        abort();
+    }
 }
 
 long Database::getLatestRowId(void) {
@@ -197,6 +232,7 @@ void Database::rebuildTestDatabase(void) {
     insertTransaction.bindValue(":amount", 8000);
     insertTransaction.bindValue(":time", 1570049000);
     insertTransaction.exec();
+
     insertTransaction.bindValue(":accId", accountId2);
     insertTransaction.bindValue(":amount", -4000);
     insertTransaction.exec();
@@ -221,20 +257,22 @@ void Database::rebuildTestDatabase(void) {
      * Transaction 3. 3 4102
      * Transaction 4. 4 -1002
      */
-    insertTransaction.bindValue(":accId", accountId2);
+    /* These instructions in the code say to do accountId2, instead of account 1,
+     * but the assignment output says account 1 */
+    insertTransaction.bindValue(":accId", accountId1);
     insertTransaction.bindValue(":amount", 4022);
-    insertTransaction.bindValue(":time", "NOW()");
+    insertTransaction.bindValue(":time", 1570049000);
     insertTransaction.exec();
 
     insertTransaction.bindValue(":amount", -2122);
-    insertTransaction.bindValue(":time", "NOW()");
+    insertTransaction.bindValue(":time", 1670049000);
     insertTransaction.exec();
 
     insertTransaction.bindValue(":amount", 4102);
-    insertTransaction.bindValue(":time", "NOW()");
+    insertTransaction.bindValue(":time", 1770049000);
     insertTransaction.exec();
 
     insertTransaction.bindValue(":amount", -1002);
-    insertTransaction.bindValue(":time", "NOW()");
+    insertTransaction.bindValue(":time", 1870049000);
     insertTransaction.exec();
 }

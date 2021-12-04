@@ -1,3 +1,7 @@
+/* Bank Database
+ * Tanner Babcock
+ * tababcock@dmacc.edu
+ * December 3, 2021 */
 #include "account.h"
 
 Account::Account(long long accountId): accountId(accountId) {
