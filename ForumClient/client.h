@@ -10,11 +10,18 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 
-struct ForumPost {
+class ForumPost {
+private:
     int userId;
     int id;
     std::string title;
     std::string body;
+public:
+    ForumPost(int uid, int i, std::string t, std::string b);
+    std::string getTitle(void);
+    void setTitle(const std::string &t);
+    std::string getBody(void);
+    void setBody(const std::string &b);
 };
 
 class Client : QObject {
@@ -26,10 +33,10 @@ private:
 public:
     explicit Client(QObject *parent = nullptr);
     ~Client(void);
-    std::unique_ptr<ForumPost> request(int postId);
+    std::unique_ptr<ForumPost> request(unsigned int postId);
 signals:
 public slots:
-    void onResult(QNetworkReply *reply);
+    void onResult(QNetworkReply *reply) { }
 };
 
 #endif // CLIENT_H

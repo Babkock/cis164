@@ -11,14 +11,15 @@ int main(int argc, char *argv[]) {
     QCoreApplication a(argc, argv);
     Client client;
 
-    int postId;
-    cout << "What is the ID of the forum post you wish to view (-1 to quit)? ";
+    unsigned int postId;
+    cout << "What is the ID of the forum post you wish to view (0 to quit)? ";
     cin >> postId;
-    while (postId != -1) {
+    while (postId != 0) {
         unique_ptr<ForumPost> post = client.request(postId);
-        cout << post->title << endl << post->body << endl;
-        cout << endl << "What is the ID of the forum post you wish to view (-1 to quit)? ";
+        cout << "Title: " << post->getTitle() << endl;
+        cout << post->getBody() << endl;
+        cout << endl << "What is the ID of the forum post you wish to view (0 to quit)? ";
         cin >> postId;
     }
-    return a.exec();
+    return 0;
 }
