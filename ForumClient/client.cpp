@@ -24,7 +24,7 @@ void Client::blockUntilReplyReceived(QNetworkReply *reply) {
 /* The server replies with a JSON object, to be useful, we want to map
  * that JSON object into a C++ object */
 unique_ptr<ForumPost> Client::parseJson(QNetworkReply &reply) {
-    QString strReply = (QString)reply.readAll();
+    QString strReply = static_cast<QString>(reply.readAll());
     QJsonDocument doc = QJsonDocument::fromJson(strReply.toUtf8());
     QJsonObject json = doc.object();
 
@@ -33,7 +33,23 @@ unique_ptr<ForumPost> Client::parseJson(QNetworkReply &reply) {
     QString title = json.value("title").toString();
     QString body = json.value("body").toString();
     unique_ptr<ForumPost> post = make_unique<ForumPost>(userId, id, title.toStdString(), body.toStdString());
+
     return post;
+}
+
+unique_ptr<ForumComment> Client::parseComment(QNetworkReply &reply) {
+    QString strReply = static_cast<QString>(reply.readAll());
+    QJsonDocument doc = QJsonDocument::fromJson(strReply.toUtf8());
+    QJsonObject json = doc.object();
+
+    int postId = json.value("postId").toInt();
+    int id = json.value("id").toInt();
+    QString name = json.value("name").toString();
+    QString body = json.value("body").toString();
+    QString email = json.value("email").toString();
+    unique_ptr<ForumComment> comment = make_unique<ForumComment>(postId, id, name.toStdString(), email.toStdString(), body.toStdString());
+
+    return comment;
 }
 
 Client::Client(QObject *parent) {
@@ -46,16 +62,33 @@ Client::~Client(void) {
 }
 
 unique_ptr<ForumPost> Client::request(unsigned int postId) {
-    QNetworkRequest request;
+    QNetworkRequest *request = new QNetworkRequest;
     QNetworkReply *reply;
 
-    request.setUrl(QUrl("http://jsonplaceholder.typicode.com/posts/" + QString::number(postId)));
-    reply = networkManager->get(request);
+    request->setUrl(QUrl("http://jsonplaceholder.typicode.com/posts/" + QString::number(postId)));
+    reply = networkManager->get(*request);
     blockUntilReplyReceived(reply);
 
     if (reply->error() != QNetworkReply::NoError) {
-        qDebug() << reply->errorString();
+        qWarning() << reply->errorString();
         return nullptr;
     }
+    delete request;
     return parseJson(*reply);
+}
+
+unique_ptr<ForumComment> Client::comment(unsigned int commentId) {
+    QNetworkRequest *request = new QNetworkRequest;
+    QNetworkReply *reply;
+
+    request->setUrl(QUrl("http://jsonplaceholder.typicode.com/comments/" + QString::number(commentId)));
+    reply = networkManager->get(*request);
+    blockUntilReplyReceived(reply);
+
+    if (reply->error() != QNetworkReply::NoError) {
+        qWarning() << reply->errorString();
+        return nullptr;
+    }
+    delete request;
+    return parseComment(*reply);
 }

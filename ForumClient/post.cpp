@@ -4,7 +4,7 @@
  * December 8, 2021 */
 #include "client.h"
 
-ForumPost::ForumPost(int uid, int i, std::string t, std::string b):
+ForumPost::ForumPost(int uid, int i, const std::string &t, const std::string &b):
     userId(uid),
     id(i),
     title(t),

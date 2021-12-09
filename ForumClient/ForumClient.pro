@@ -19,7 +19,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     client.cpp \
-    forumpost.cpp
+    comment.cpp \
+    post.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
