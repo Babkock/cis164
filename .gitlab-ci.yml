@@ -26,7 +26,8 @@ build:
     - make
     - cd ..
     - cd examples
-    - g++ file.cpp -o file
+    - g++ binary.cpp -Wall -O2 -o binary
+    - g++ file.cpp -Wall -O2 -o file
     - g++ metastruct.cpp -Wall -O2 -o metastruct
     - cc pointies.c -O2 -o pointies
     - g++ polymorph.cpp -Wall -O2 -o polymorph
@@ -34,6 +35,7 @@ build:
     - g++ struct.cpp -Wall -O2 -o struct
     - g++ substr.cpp -Wall -O2 -o substr
     - g++ vec2.cpp -Wall -O2 -o vec
+    - g++ random.cpp -Wall -O2 -o random
     - g++ signal.cpp -Wall -O2 -o signal
     - g++ funcpointer.cpp -Wall -O2 -o funcpointer
     - g++ static.cpp -Wall -O2 -o static
@@ -70,6 +72,8 @@ build:
       - examples/funcpointer
       - examples/static
       - examples/heap
+      - examples/binary
+      - examples/random
   cache:
     paths:
       - "*.o"
