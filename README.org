@@ -3,6 +3,8 @@
 #+EMAIL: babkock@protonmail.com
 #+LANGUAGE: en
 
+[[https://github.com/Babkock/cis164/actions/workflows/c-cpp.yml/badge.svg]]
+
 Homework for Advanced C++ class. Single-file assignments, examples, and QtCreator/Qmake projects.
 
 ** First Half-Semester Project
