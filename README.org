@@ -1,0 +1,22 @@
+#+TITLE: Advanced C Plus Plus
+#+AUTHOR: Tanner Babcock
+#+EMAIL: babkock@protonmail.com
+#+LANGUAGE: en
+
+Homework for Advanced C++ class. Single-file assignments, examples, and QtCreator/Qmake projects.
+
+** First Half-Semester Project
+
+*[[https://github.com/naertz/CasualMockSkirmish][CasualMockSkirmish]]* is a battle simulator. It was a collaboration with Noah Ertz, Lukas Lawler, Owen Miner, and Jeffrey Garretto.
+
+** QtCreator Projects
+
+- *Bank Database* - Text interface for bank system
+- *SQLite* - A simple interface for selecting names from a database by ID
+- *ColorSelector* - Generate RGB colors with dials
+- *ForumClient* - HTTP client that interprets JSON
+- Thread Race
+
+** Makefile Projects
+
+- FoodTruck

@@ -1,0 +1,79 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: |
+        g++ tictactoe.cpp -Wall -O2 -o tictactoe
+        g++ tictacmoves.cpp -Wall -O2 -o tictacmoves
+        g++ foodmodel.cpp -Wall -O2 -o foodmodel
+        g++ areview.cpp -Wall -O2 -o areview
+        g++ csvwrite.cpp -Wall -O2 -o csvwrite
+        g++ csvread.cpp -Wall -O2 -o csvread
+        g++ biometrics.cpp -Wall -O2 -o biometrics
+        g++ inherit.cpp -Wall -O2 -o inherit
+        g++ dynamic.cpp -Wall -O2 -o dynamic
+        g++ multiinherit.cpp -Wall -O2 -o multiinherit
+        g++ account.cpp -Wall -O2 -o account
+        g++ operators.cpp -Wall -O2 -o operators
+        g++ template.cpp -Wall -O2 -o template
+        g++ planetmap.cpp -Wall -O2 -o planetmap
+        g++ stack.cpp -Wall -O2 -o stack
+        g++ unique.cpp -Wall -O2 -o unique
+        cd FoodTruck
+        make
+        cd ..
+        cd examples
+        g++ binary.cpp -Wall -O2 -o binary
+        g++ file.cpp -Wall -O2 -o file
+        g++ metastruct.cpp -Wall -O2 -o metastruct
+        cc pointies.c -O2 -o pointies
+        g++ polymorph.cpp -Wall -O2 -o polymorph
+        g++ string.cpp -Wall -O2 -o string
+        g++ struct.cpp -Wall -O2 -o struct
+        g++ substr.cpp -Wall -O2 -o substr
+        g++ vec2.cpp -Wall -O2 -o vec
+        g++ random.cpp -Wall -O2 -o random
+        g++ signal.cpp -Wall -O2 -o signal
+        g++ funcpointer.cpp -Wall -O2 -o funcpointer
+        g++ static.cpp -Wall -O2 -o static
+        g++ heap.cpp -Wall -O2 -o heap
+        cd ..
+    - name: Test
+      run: |
+        echo "shit.csv" | ./csvread
+        seq 10 | ./areview
+        ./biometrics
+        ./inherit
+        ./operators
+        echo "Venus" | ./planetmap
+        seq 10 | ./stack
+        seq 10 | ./unique
+        ./template
+        size tictactoe
+        size tictacmoves
+        size foodmodel
+        size areview
+        size csvwrite
+        size csvread
+        size biometrics
+        size inherit
+        size dynamic
+        size multiinherit
+        size account
+        size operators
+        size template
+        size planetmap
+        size stack
+        size unique
+
